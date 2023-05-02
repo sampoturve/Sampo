@@ -1,0 +1,9 @@
+/.editorconfig
+/.gitattributes
+/vendor/
+.idea/
+.DS_Store
+/.env
+node_modules
+*.sql
+*.sql.*
