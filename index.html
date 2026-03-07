@@ -28,24 +28,14 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      function referrerMatchesDomain(domain) {
-        try {
-          const referrerHost = new URL(document.referrer).hostname;
-          return referrerHost === domain || referrerHost.endsWith('.' + domain);
-        } catch (e) {
-          return false;
-        }
-      }
       const messages = {
         'auaif1.com': ' Audi F1 is pretty cool as well. 🌚',
       };
       const dyndyn = document.querySelector('.dyndyn');
       if (dyndyn) {
-        for (const domain in messages) {
-          if (referrerMatchesDomain(domain)) {
-            dyndyn.textContent += messages[domain];
-            break;
-          }
+        const ref = new URLSearchParams(window.location.search).get('ref');
+        if (ref && messages[ref]) {
+          dyndyn.textContent += messages[ref];
         }
       }
     });
