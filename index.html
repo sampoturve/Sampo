@@ -25,6 +25,32 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
   <script>window.onload=function(){document.getElementById("duck").onclick=function(){this.classList.toggle("whee")}};</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      function referrerMatchesDomain(domain) {
+        try {
+          const referrerHost = new URL(document.referrer).hostname;
+          return referrerHost === domain || referrerHost.endsWith('.' + domain);
+        } catch (e) {
+          return false;
+        }
+      }
+      const messages = {
+        'auaif1.com': ' Audi F1 is pretty cool as well. 🌚',
+      };
+      const dyndyn = document.querySelector('.dyndyn');
+      if (dyndyn) {
+        for (const domain in messages) {
+          if (referrerMatchesDomain(domain)) {
+            dyndyn.textContent += messages[domain];
+            break;
+          }
+        }
+      }
+    });
+  </script>
+
   <script>
     var _paq = window._paq = window._paq || [];
     _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
@@ -60,7 +86,7 @@
         <div class="c c--h">
           <p>I'm Sampo. I’m working as a developer at <a href="https://wunder.io/" target="blank" class="wunder" title="Wunder">Wunder</a>.</p>
           <p>I’m located in Turku, Finland.</p>
-          <p>I like bikes and birds.</p>
+          <p class="dyndyn">I like bikes and birds.</p>
           <div class="contact-links">
             <a href="https://fi.linkedin.com/in/sampoturve" title="LinkedIn" class="linkedin" target="_blank">LinkedIn</a>
             <a href="https://twitter.com/sampoturve" title="Twitter" class="twitter" target="_blank">Twitter</a>
